@@ -4,12 +4,15 @@ repositories { jcenter() }
 
 plugins {
   idea
+  application
   kotlin("jvm") version "1.2.61"
   kotlin("kapt") version "1.2.61"
   id("com.google.protobuf") version "0.8.6"
 }
 
 group = "ca.cutterslade.experiment"
+
+application { mainClassName = "ca.cutterslade.experiment.gdk.MainKt" }
 
 dependencies {
   compile(kotlin("stdlib-jdk8"))
@@ -22,8 +25,9 @@ dependencies {
 
   kapt("com.google.dagger:dagger-compiler:2.17")
   kapt("com.google.dagger:dagger-grpc-server-processor:2.17")
-
 }
+
+kapt { correctErrorTypes = true }
 
 protobuf {
   withGroovyBuilder {
